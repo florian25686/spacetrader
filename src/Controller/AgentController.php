@@ -16,7 +16,7 @@ class AgentController extends AbstractController
     {
     }
 
-   #[Route('agent', methods: ['GET'])]
+   #[Route('agent', name: 'agent.overview', methods: ['GET'])]
     public function viewAgentData(): Response
     {
         $agentResponse = $this->apiRequestService->getGuzzleClient()->request(

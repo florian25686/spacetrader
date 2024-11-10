@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% if shipsList.data is defined and shipsList.data.ships is defined %}
+        {% for ship in shipsList.data.ships %}
+            <h1>{{ ship.name }}</h1>
+            {{ ship.description }} <br>
+            Price: {{ ship.purchasePrice }} <br>
+            <h3>Crew Information:</h3>
+                Required: {{ ship.crew.required }} <br>
+                Capacity: {{ ship.crew.capacity }} <br>
+
+            <a href="{{ path('ship.purchase', {'shipType': ship.type, 'shipyardCoordinate': shipyardCoordinate}) }}">Purchase ship</a>
+
+            {{ dump(ship) }}
+            <hr>
+        {% endfor %}
+    {% else %}
+        No Ships found
+    {% endif %}
+{% endblock %}

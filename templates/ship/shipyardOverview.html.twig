@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% for shipyard in shipyardList %}
+        <h1>{{ shipyard.symbol }}</h1>
+        Type: {{ shipyard.type }} <br>
+        Faction: {{ shipyard.faction.symbol }} <br>
+        <a href="{{ path('ship.viewAvailableShips', {'coordinate': shipyard.systemSymbol, 'shipyardCoordinate': shipyard.symbol}) }}">List ships</a>
+
+        <hr>
+    {% endfor %}
+{% endblock %}

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Form\Type\AgentRegistrationType;
 use App\Service\ApiRequestService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,6 +17,36 @@ class RegistrationController extends AbstractController
     )
     {
 
+    }
+
+    #[Route('/', name: 'registerNewAgentPage', methods: ['GET', 'POST'])]
+    public function newAgentRegistrationPage(Request $request): Response
+    {
+        $agentRegistrationType = new AgentRegistrationType();
+
+        $form = $this->createForm(AgentRegistrationType::class, $agentRegistrationType);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $registrationData = $request->request->all('agent_registration');
+
+            $username = $registrationData['agentName'];
+            $faction = $registrationData['faction'];
+
+            if (null !== $username && null !== $faction) {
+                return $this->redirectToRoute('registerUser', [
+                    'username' => $username,
+                    'faction' => $faction,
+                ]);
+            }
+        }
+
+        return $this->render(
+            'registration/newAgentRegistrationPage.html.twig',
+            [
+                'form' => $form,
+            ]
+        );
     }
 
     #[Route('register/{username}/{faction}', name: 'registerUser', methods: ['GET'])]
@@ -44,7 +75,7 @@ class RegistrationController extends AbstractController
         }
 
         return new Response(
-            json_decode($registerAgentRequest->getBody()->getContents(), true)['token'],
+            json_decode($registerAgentRequest->getBody()->getContents(), true)['data']['token'],
             Response::HTTP_OK
         );
     }

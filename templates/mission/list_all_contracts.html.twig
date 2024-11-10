@@ -1,6 +1,32 @@
 {% extends 'base.html.twig' %}
 
-        {% block body %}
+{% block body %}
+    {% for currentContract in contracts %}
+        {% if loop.index0 == 0 %}
+            {% set termOption = currentContract[0].terms %}
 
-{{ dump(missionsList) }}
-        {% endblock %}
+            <h2>Information</h2>
+            Faction: {{ currentContract[0].factionSymbol }} <br/>
+            Type: {{ currentContract[0].type }} <br/>
+            <h2>Terms</h2>
+            Deadline: {{ termOption.deadline|date() }} <br/>
+            Expires: {{ currentContract[0].expiration|date() }} <br/>
+            Deadline to accept: {{ currentContract[0].deadlineToAccept|date() }} <br/>
+            Payment on accept: {{ termOption.payment.onAccepted }} Credits<br/>
+            Payment on fulfilled: {{ termOption.payment.onFulfilled }} Credits<br>
+            <h2>Deliver</h2>
+            {% for deliver in termOption.deliver %}
+                Deliver good: {{ deliver.tradeSymbol }}<br>
+                Destination: {{ deliver.destinationSymbol }}<br>
+                Units Required: {{ deliver.unitsRequired }}<br>
+                Units Fulfilled: {{ deliver.unitsFulfilled }}
+            {% endfor %}
+<br><br>
+            {% if not currentContract[0].accepted %}
+                <a href="{{ path('contract.accept', { 'contractId': currentContract[0].id }) }}">Accept contract</a><br/>
+            {% else %}
+                Accepted
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+{% endblock %}

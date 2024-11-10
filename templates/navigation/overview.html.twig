@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% for waypoint in waypoints %}
+        <h1>{{ waypoint.symbol }}</h1>
+        Type: {{ waypoint.type }}
+
+        {% if waypoint.orbitals %}
+            <h2>Orbitals</h2>
+
+            {% for orbital in waypoint.orbitals %}
+                {# Link oribtals here #}
+                <a href=" {{ path('navigation.listWaypoints', { coordinate: orbital.symbol } ) }}">{{ orbital.symbol }}</a> <br/>
+            {% endfor %}
+        {% endif %}
+
+        {% if waypoint.traits %}
+            <h2>Details</h2>
+            {% for trait in waypoint.traits %}
+                <h2>{{ trait.name }}</h2>
+                {{ trait.description }} <br>
+            {% endfor %}
+        {% else %}
+            No Details present
+        {% endif %}
+    {% endfor %}
+{% endblock %}

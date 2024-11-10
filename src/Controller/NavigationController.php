@@ -3,30 +3,30 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Service\ApiRequestService;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class NavigationController
+class NavigationController extends BaseController
 {
-    public function __construct(
-        public readonly ApiRequestService $apiRequestService,
-    )
+    #[Route('/listWaypoints/{coordinate}', name: 'navigation.listWaypoints')]
+    public function listWaypoints(string $coordinate = 'X1-VG16-A1'): Response
     {
-    }
+        // sector, system, location
+        $separatedCoordinates = explode('-', $coordinate);
+        $sector = $separatedCoordinates[0];
+        $system = $separatedCoordinates[1];
+        $location = $separatedCoordinates[2];
+        // 'systems/X1-VG16/waypoints/X1-VG16-A1'
+        $uri = sprintf('systems/%s-%s/waypoints/%s', $sector, $system, $coordinate);
 
-    #[Route('/listWaypoints')]
-    public function listWaypoints(): Response
-    {
        $waypointList = $this->apiRequestService->getGuzzleClient()->request(
            'GET',
-           'systems/X1-RD20/waypoints/X1-RD20-A1'
+           $uri
        );
-
-       new Response(
-           print_r(json_decode($waypointList->getBody()->getContents(), true)),
-           Response::HTTP_OK,
-       );
+       $waypointListResponse = json_decode($waypointList->getBody()->getContents(), true);
+       return $this->render('navigation/overview.html.twig', [
+           'waypoints' => $waypointListResponse,
+       ]);
     }
 
     #[Route('/systems')]
