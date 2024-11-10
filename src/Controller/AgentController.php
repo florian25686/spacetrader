@@ -32,4 +32,21 @@ class AgentController extends AbstractController
             'agentData' => $agentData['data'],
         ]);
     }
+
+    #[Route('agent/ships', name: 'agent.ships', methods: ['GET'])]
+    public function viewAgentShips(): Response
+    {
+        $agentResponse = $this->apiRequestService->getGuzzleClient()->request(
+            'GET',
+            'my/ships',
+            [
+                'headers' => ['Authorization' => 'Bearer ' . $this->apiRequestService->getAgentToken() ],
+            ]
+        );
+        $agentShipsResponse = $agentResponse->getBody()->getContents();
+
+        return $this->render('agent/ships.html.twig', [
+            'ships' => json_decode($agentShipsResponse, true)['data'],
+        ]);
+    }
 }
