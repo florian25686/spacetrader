@@ -38,8 +38,26 @@ class NavigationController extends BaseController
        );
 
        return new Response(
-           json_decode($systemsList->getBody()->getContents(), true),
+           $systemsList->getBody()->getContents(),
            Response::HTTP_OK,
+           [
+               'Content-Type' => 'application/json',
+           ]
        );
+    }
+
+    #[Route('/enigneeredAsteroids/{coordinates}', name: 'navigation.enigneeredAsteroids', methods: ['GET'])]
+    public function listEngineeredAsteroids(string $coordinates = 'X1-VG16'): Response
+    {
+        $asteroidsList = $this->apiRequestService->getGuzzleClient()->request(
+            'GET',
+            sprintf('systems/%s/waypoints?type=ENGINEERED_ASTEROID', $coordinates)
+        );
+
+        return $this->render('navigation/listEngineeredAsteroids.html.twig',
+        [
+            'systemAsteroids' => json_decode($asteroidsList->getBody()->getContents(), true)['data'],
+        ]
+        );
     }
 }

@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{% for asteroid in systemAsteroids %}
+    <h1>{{ asteroid.symbol }}</h1>
+    <a href="{{ path('ship.flyToMiningLocation', { 'ship': 'SUN_NUPI_3-3', 'miningLocationCoordinate': asteroid.symbol})}}">Start mining</a>
+    <br>
+{% endfor %}
+
+{% endblock %}

@@ -3,6 +3,8 @@
 {% block body %}
     {% for ship in ships %}
         <h1>{{ ship.symbol }}</h1>
+        <h2>Frame</h2>
+        Frame: {{ ship.frame.symbol }}
         <h2>Navigation</h2>
         Status: {{ ship.nav.status }} <br>
         System: {{ ship.nav.systemSymbol }} <br>
@@ -21,13 +23,34 @@
             {% set route = ship.nav.route %}
             <h3>Route</h3>
             <h4>Destination</h4>
-            Symbol: {{ route.destination.symbol }}
+            Symbol: {{ route.destination.symbol }}<br>
             Type: {{ route.destination.type }}
             <h4>From</h4>
-            Symbol: {{ route.origin.symbol }}
-            Type: {{ route.origin.type }}
-            Arrival: {{ route.arrival|date() }}
-            Departure: {{ route.depatureTime|date() }}
+            Symbol: {{ route.origin.symbol }}<br>
+            Type: {{ route.origin.type }}<br>
+            Arrival: {{ route.arrival|date() }}<br>
+            Departure: {{ route.departureTime|date() }}<br>
+            Current Time: {{ 'now'|date() }}
+
+            {% if ship.nav.status == 'IN_ORBIT' %}
+                <br/>
+                <a href="{{ path('ship.dock', { 'ship': ship.symbol }) }}">Dock ship</a> <br/>
+
+                {% if ship.cooldown.remainingSeconds == 0 %}
+                    <a href="{{ path('ship.startMining', { 'ship': ship.symbol }) }}">Start mining</a>
+                {% else %}
+                    Cooldown Time (in seconds): {{ ship.cooldown.remainingSeconds }}
+                {% endif %}
+            {% endif %}
+        {% endif %}
+
+        {% if ship.nav.status == 'DOCKED' and ship.fuel.current < ship.fuel.capacity %}
+            <br/>
+            <a href="{{ path('ship.refuel', { 'ship': ship.symbol }) }}">Refuel</a>
+        {% endif %}
+
+        {% if ship.nav.status == 'DOCKED' %}
+            <a href="{{ path('ship.orbit', { 'ship': ship.symbol }) }}">Send ship to orbit</a>
         {% endif %}
     {% endfor %}
 {% endblock %}
