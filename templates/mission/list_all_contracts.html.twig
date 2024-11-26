@@ -1,5 +1,10 @@
 {% extends 'base.html.twig' %}
 
+{% block menu %}
+    {% set contractListActive = 'active' %}
+    {{ parent() }}
+{% endblock  %}
+
 {% block body %}
     {% for currentContract in contracts %}
         {% if loop.index0 == 0 %}

@@ -19,10 +19,12 @@ class ShipController extends BaseController
             ]
         );
 
+        $shipyardWaypoints = json_decode($findShipYardResponse->getBody()->getContents(), true)['data'];
+
         return $this->render(
             'ship/shipyardOverview.html.twig',
             [
-                'shipyardList' => json_decode($findShipYardResponse->getBody()->getContents(), true)['data']
+                'shipyardList' => $shipyardWaypoints,
             ]
         );
     }

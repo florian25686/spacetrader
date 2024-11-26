@@ -1,0 +1,41 @@
+{% set homeActive = outerScope.homeActive|default('') %}
+{% set waypointsOverviewActive = outerScope.waypointsOverviewActive|default('') %}
+{% set contractListActive = outerScope.contractListActive|default('') %}
+{% set agentDetailsActive = outerScope.agentDetailsActive|default('') %}
+{% set agentShipsActive = outerScope.agentShipsActive|default('') %}
+{% set findShipyardActive = outerScope.findShipyardActive|default('') %}
+{% set engineeredAsteroidsActive = outerScope.engineeredAsteroidsActive|default('') %}
+
+<nav class="navbar navbar-expand-lg bg-body-secondary mb-2">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="https://spacetraders.io">Spacetraders</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link {{ homeActive }}" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('navigation.listWaypoints') }}" class="nav-link {{ waypointsOverviewActive }}">Waypoints Overview</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('contract.list') }}" class="nav-link {{ contractListActive }}">Contract List</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('agent.overview') }}" class="nav-link {{ agentDetailsActive }}">Agent Details</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('agent.ships') }}" class="nav-link {{ agentShipsActive }}">Agent Ships</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('ship.findShipyard') }}" class="nav-link {{ findShipyardActive }}">Find Shipyard</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('navigation.enigneeredAsteroids') }}" class="nav-link {{ engineeredAsteroidsActive }}">Engineered Asteroids</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

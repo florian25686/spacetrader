@@ -1,0 +1,33 @@
+{
+  "data": [
+    {
+      "id": "cm3b6m2wvgs9hs60cxtwgyy6f",
+      "factionSymbol": "COSMIC",
+      "type": "PROCUREMENT",
+      "terms": {
+        "deadline": "2024-11-17T05:56:32.940Z",
+        "payment": {
+          "onAccepted": 1510,
+          "onFulfilled": 11364
+        },
+        "deliver": [
+          {
+            "tradeSymbol": "COPPER_ORE",
+            "destinationSymbol": "X1-VG16-H56",
+            "unitsRequired": 58,
+            "unitsFulfilled": 0
+          }
+        ]
+      },
+      "accepted": false,
+      "fulfilled": false,
+      "expiration": "2024-11-11T05:56:32.940Z",
+      "deadlineToAccept": "2024-11-11T05:56:32.940Z"
+    }
+  ],
+  "meta": {
+    "total": 1,
+    "page": 1,
+    "limit": 10
+  }
+}

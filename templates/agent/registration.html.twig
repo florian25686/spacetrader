@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block menu %}
+    {% set homeActive = 'active' %}
+    {{ parent()s }}
+{% endblock %}
 {% block body %}
 {{ dump(agentData) }}
 {% endblock %}

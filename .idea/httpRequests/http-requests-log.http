@@ -1,0 +1,56 @@
+GET https://api.spacetraders.io/v2/my/contracts
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZGVudGlmaWVyIjoiU1VOX05VUElfMyIsInZlcnNpb24iOiJ2Mi4yLjAiLCJyZXNldF9kYXRlIjoiMjAyNC0xMC0yNyIsImlhdCI6MTczMTIxODE5Mywic3ViIjoiYWdlbnQtdG9rZW4ifQ.i74Okc8x_hMbeNJaCBG3yijgvpmIIgLn0dGwj9E7l515XklVClqxm7cB2yplM2SajU5SOTh4bzXMOpl33jYs64wi6keg_9WM9exYqYYNWoBBuqBY464CJhCUa4ZHlQLHQNi5agDX2iKlK7VuDVjRMrQisRi_UdmRzNx77P7rd5WibcAo2SoV3WZA9WQXvDTAceHIExexMGzzNGrOebvoaHgGO20nfvsCMMHT5cTaelO1G7onbgBg2UzTfzMr0KkbF-9rCeAGo3YzthIBHWelhMED4AdEax0VN7XYrf_ukLnVfVUR2YELruRT8HTfmbdtdgWts3DtRgqRwhcuPrq8sA
+User-Agent: IntelliJ HTTP Client/PhpStorm 2024.2.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2024-11-10T131719.200.json
+
+###
+
+GET https://api.spacetraders.io/v2/systems/X1-RD20/waypoints/X1-RD20-A1
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZGVudGlmaWVyIjoiU1VOREFZLVRFU1QiLCJ2ZXJzaW9uIjoidjIuMi4wIiwicmVzZXRfZGF0ZSI6IjIwMjQtMTAtMDYiLCJpYXQiOjE3Mjg4NDgxMjAsInN1YiI6ImFnZW50LXRva2VuIn0.CO2erHbS_HsYPW3GEFbdunJE-YFaU_RY5LCk_MCZlKjXVErIMbabCGGz1DgGY2SNO_60-ZhHu2oEfKQIenHwon_3jLiuvY4K5abxI9YNBkvOqbVka1ZrTCf2C5A703F9rUVx_9ZCwXMiSP2XAIGR9Z3sOEe-DFQl_nazlPw3UIloLxlk51f_c5VsjwO4uqS29s7qN6KBmUyErFbImYpNYicidOOKwPxhioTg4fprJ61ZVliH03FUoZ7K-LbZ6IYKJ5HRGz5vLXZIRsOHcQQYN7vs0C-NHIWjQC9fLMMo3rXm4bKZZK7RHcXzeDfdYnoCuViAU5f1uxEse6k1aRGAkw
+User-Agent: IntelliJ HTTP Client/PhpStorm 2024.2.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2024-10-13T221353.200.json
+
+###
+
+POST https://api.spacetraders.io/v2/register
+Content-Type: application/json
+Content-Length: 59
+User-Agent: IntelliJ HTTP Client/PhpStorm 2024.2.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+x-http2-scheme: https
+
+{
+    "symbol": "sunday-test",
+    "faction": "COSMIC"
+   }
+
+<> 2024-10-13T213520.201.json
+
+###
+
+POST https://api.spacetraders.io/v2/register
+Content-Type: application/json
+Content-Length: 64
+User-Agent: IntelliJ HTTP Client/PhpStorm 2024.2.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+x-http2-scheme: https
+
+{
+    "symbol": "sunday-test-user",
+    "faction": "COSMIC"
+   }
+
+<> 2024-10-13T211408.422.json
+
+###
+

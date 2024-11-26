@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block menu %}
+    {% set agentDetailsActive = 'active' %}
+    {{ parent() }}
+{% endblock %}
 {% block body %}
 <h1>Agent Information</h1>
     Agent symbol: {{ agentData.symbol }} <br/>

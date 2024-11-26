@@ -1,5 +1,12 @@
 {% extends 'base.html.twig' %}
 
+{# Load the menu and provide the current active page menu item #}
+
+{% block menu %}
+    {% set waypointsOverviewActive= 'active' %}
+    {{ parent() }}
+{% endblock %}
+
 {% block body %}
 
     {% for waypoint in waypoints %}

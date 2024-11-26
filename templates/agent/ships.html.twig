@@ -1,56 +1,79 @@
 {% extends 'base.html.twig' %}
-
+{% block menu %}
+    {% set agentShipsActive = 'active' %}
+    {{ parent() }}
+{% endblock %}
 {% block body %}
+<div class="accordion" id="shipsAcccordion">
     {% for ship in ships %}
-        <h1>{{ ship.symbol }}</h1>
-        <h2>Frame</h2>
-        Frame: {{ ship.frame.symbol }}
-        <h2>Navigation</h2>
-        Status: {{ ship.nav.status }} <br>
-        System: {{ ship.nav.systemSymbol }} <br>
-        Waypoint: {{ ship.nav.waypointSymbol }} <br>
-        FlightMode: {{ ship.nav.flightMode }} <br>
+        {% set ariaExpand = false %}
+        {% set shouldShow = '' %}
+        {% set shouldCollapse = ' collapsed' %}
 
-        <h3>Fuel</h3>
-        Current: {{ ship.fuel.current }} <br>
-        Capacity: {{ ship.fuel.capacity }} <br>
-        Consumed: {{ ship.fuel.consumed.amount }} <br>
-
-        <h3>Cargo</h3>
-        Capacity: {{ ship.cargo.capacity }} <br>
-        Units: {{ ship.cargo.units }} <br>
-        {% if ship.nav.status != 'DOCKED' %}
-            {% set route = ship.nav.route %}
-            <h3>Route</h3>
-            <h4>Destination</h4>
-            Symbol: {{ route.destination.symbol }}<br>
-            Type: {{ route.destination.type }}
-            <h4>From</h4>
-            Symbol: {{ route.origin.symbol }}<br>
-            Type: {{ route.origin.type }}<br>
-            Arrival: {{ route.arrival|date() }}<br>
-            Departure: {{ route.departureTime|date() }}<br>
-            Current Time: {{ 'now'|date() }}
-
-            {% if ship.nav.status == 'IN_ORBIT' %}
-                <br/>
-                <a href="{{ path('ship.dock', { 'ship': ship.symbol }) }}">Dock ship</a> <br/>
-
-                {% if ship.cooldown.remainingSeconds == 0 %}
-                    <a href="{{ path('ship.startMining', { 'ship': ship.symbol }) }}">Start mining</a>
-                {% else %}
-                    Cooldown Time (in seconds): {{ ship.cooldown.remainingSeconds }}
-                {% endif %}
-            {% endif %}
+        {% if loop.index == 1 %}
+            {% set ariaExpand = true %}
+            {% set shouldShow = 'show' %}
+            {% set shouldCollapse = '' %}
         {% endif %}
 
-        {% if ship.nav.status == 'DOCKED' and ship.fuel.current < ship.fuel.capacity %}
-            <br/>
-            <a href="{{ path('ship.refuel', { 'ship': ship.symbol }) }}">Refuel</a>
-        {% endif %}
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button{{ shouldCollapse }}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ loop.index }}" aria-expanded="true" aria-controls="collapse{{ loop.index }}">
+                    {{ ship.symbol }} <div class="fs-6 fw-lighter">({{ ship.nav.status }})</div>
+                </button>
+            </h2>
+            <div id="collapse{{ loop.index }}" class="accordion-collapse collapse {{ shouldShow }}" data-bs-parent="#shipsAcccordion">
+                <div class="accordion-body">
+                    <h2>Navigation</h2>
+                    Status: {{ ship.nav.status }} <br>
+                    System: {{ ship.nav.systemSymbol }} <br>
+                    Waypoint: {{ ship.nav.waypointSymbol }} <br>
+                    FlightMode: {{ ship.nav.flightMode }} <br>
 
-        {% if ship.nav.status == 'DOCKED' %}
-            <a href="{{ path('ship.orbit', { 'ship': ship.symbol }) }}">Send ship to orbit</a>
-        {% endif %}
+                    <h3>Fuel</h3>
+                    Current: {{ ship.fuel.current }} <br>
+                    Capacity: {{ ship.fuel.capacity }} <br>
+                    Consumed: {{ ship.fuel.consumed.amount }} <br>
+
+                    <h3>Cargo</h3>
+                    Capacity: {{ ship.cargo.capacity }} <br>
+                    Units: {{ ship.cargo.units }} <br>
+                    {% if ship.nav.status != 'DOCKED' %}
+                        {% set route = ship.nav.route %}
+                        <h3>Route</h3>
+                        <h4>Destination</h4>
+                        Symbol: {{ route.destination.symbol }}<br>
+                        Type: {{ route.destination.type }}
+                        <h4>From</h4>
+                        Symbol: {{ route.origin.symbol }}<br>
+                        Type: {{ route.origin.type }}<br>
+                        Arrival: {{ route.arrival|date() }}<br>
+                        Departure: {{ route.departureTime|date() }}<br>
+                        Current Time: {{ 'now'|date() }}
+
+                        {% if ship.nav.status == 'IN_ORBIT' %}
+                            <br/>
+                            <a href="{{ path('ship.dock', { 'ship': ship.symbol }) }}">Dock ship</a> <br/>
+
+                            {% if ship.cooldown.remainingSeconds == 0 %}
+                                <a href="{{ path('ship.startMining', { 'ship': ship.symbol }) }}">Start mining</a>
+                            {% else %}
+                                Cooldown Time (in seconds): {{ ship.cooldown.remainingSeconds }}
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+
+                    {% if ship.nav.status == 'DOCKED' and ship.fuel.current < ship.fuel.capacity %}
+                        <br/>
+                        <a href="{{ path('ship.refuel', { 'ship': ship.symbol }) }}">Refuel</a>
+                    {% endif %}
+
+                    {% if ship.nav.status == 'DOCKED' %}
+                        <a href="{{ path('ship.orbit', { 'ship': ship.symbol }) }}">Send ship to orbit</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
     {% endfor %}
+</div>
 {% endblock %}

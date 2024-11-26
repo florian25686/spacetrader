@@ -1,12 +1,24 @@
 {% extends 'base.html.twig' %}
 
+{% block menu %}
+    {% set findShipyardActive = 'active' %}
+    {{ parent() }}
+{% endblock %}
 {% block body %}
-    {% for shipyard in shipyardList %}
-        <h1>{{ shipyard.symbol }}</h1>
-        Type: {{ shipyard.type }} <br>
-        Faction: {{ shipyard.faction.symbol }} <br>
-        <a href="{{ path('ship.viewAvailableShips', {'coordinate': shipyard.systemSymbol, 'shipyardCoordinate': shipyard.symbol}) }}">List ships</a>
-
-        <hr>
-    {% endfor %}
+<div class="p-6 mx-auto bg-white rounded-xl shadow-lg flex items-center gap-x-4">
+    <ul role="list" class="p-8 divide-y divide-slate-200">
+        {% for shipyard in shipyardList %}
+            <li class="flex py-4 first:pt-0 last:pb-0 bg-sky-700">
+                <div class="ml-3 overflow-hidden">
+                    <a href="{{ path('ship.viewAvailableShips', {'coordinate': shipyard.systemSymbol, 'shipyardCoordinate': shipyard.symbol}) }}"
+                       class="group block mx-auto rounded-lg p-6 bg-white ring-1 ring-slate-900/5 shadow-lg space-y-3 hover:bg-sky-500 hover:ring-sky-500">
+                        {{ shipyard.type }}
+                        <p class="text-base font-medium text-slate-900">Faction: {{ shipyard.faction.symbol }} </p>
+                        <p class="text-base font-medium text-slate-500">{{ shipyard.symbol }}</p>
+                    </a>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock %}
