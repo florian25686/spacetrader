@@ -5,19 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7e3d991a-718e-4978-a1d3-0dd99e1ddf5a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Twig/Components/Menu.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/components/Menu.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ShipController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ShipController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/agent/data.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/agent/data.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/agent/registration.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/agent/registration.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/agent/ships.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/agent/ships.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/mission/list_all_contracts.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/mission/list_all_contracts.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/navigation/overview.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/navigation/overview.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/ship/shipyardOverview.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/ship/shipyardOverview.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/NavigationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/NavigationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/components/Menu.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/components/Menu.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/navigation/listEngineeredAsteroids.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/navigation/listEngineeredAsteroids.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -271,7 +263,7 @@
       <workItem from="1731616823364" duration="768000" />
       <workItem from="1732305780972" duration="6464000" />
       <workItem from="1732352293143" duration="12208000" />
-      <workItem from="1732640961205" duration="5381000" />
+      <workItem from="1732640961205" duration="8578000" />
     </task>
     <servers />
   </component>

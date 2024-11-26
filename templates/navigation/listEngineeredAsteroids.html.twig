@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block menu %}
+    {% set engineeredAsteroidsActive = 'active' %}
+    {{ parent() }}
+{% endblock %}
 {% block body %}
 {% for asteroid in systemAsteroids %}
     <h1>{{ asteroid.symbol }}</h1>

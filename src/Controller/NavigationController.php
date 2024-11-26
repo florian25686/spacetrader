@@ -24,6 +24,7 @@ class NavigationController extends BaseController
            $uri
        );
        $waypointListResponse = json_decode($waypointList->getBody()->getContents(), true);
+
        return $this->render('navigation/overview.html.twig', [
            'waypoints' => $waypointListResponse,
        ]);
