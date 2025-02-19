@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Form\Type\AgentRegistrationType;
+use App\Service\AccountService;
 use App\Service\ApiRequestService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,7 +14,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class RegistrationController extends AbstractController
 {
     public function __construct(
-        public ApiRequestService $apiRequestService
+        public ApiRequestService $apiRequestService,
+        private AccountService $accountService,
     )
     {
 
@@ -64,7 +66,8 @@ class RegistrationController extends AbstractController
             'json' => [
                 'symbol' => $username,
                 'faction' => $faction,
-            ]
+            ],
+            'headers' => ['Authorization' => 'Bearer ' . $this->accountService->getAccountToken() ],
         ]);
 
         if ($registerAgentRequest->getStatusCode() !== Response::HTTP_CREATED) {
